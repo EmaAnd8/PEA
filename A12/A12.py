@@ -54,8 +54,7 @@ u[1] = d[1] * l_0
 u[2] = d[2] * l_0
 u[3] = d[3] * l_0
 
-# Check system stability
-stable = all(u < 1)
+print(u)
 
 # Compute average system response time using Little's Law
 n0 = u[0] 
@@ -65,7 +64,7 @@ n3 = u[3] / (1 - u[3])
 N= n0 + n1 + n2 + n3
 
 # Compute system saturation throughput
-l_sat = 1 / np.max(d)
+l_sat = 1 / np.max(d[1:])
 
 X=l_0
 
@@ -74,7 +73,7 @@ R=N/X
 
 
 # Print  the  results
-def print_results(X, v, s, d, u, stable, r, l_sat, N):
+def print_results(X, v, s, d, u, r, l_sat, N):
     
     # 1. The visits of the application server, the storage and the DBMS
     # 2. The throughput of the system (X)
@@ -103,4 +102,4 @@ def print_results(X, v, s, d, u, stable, r, l_sat, N):
     print("=========================")
 
 # Call the function to print results
-print_results(X=X, v=v, s=s, d=d, u=u, stable=stable, r=R, l_sat=l_sat, N=N)
+print_results(X=X, v=v, s=s, d=d, u=u,r=R, l_sat=l_sat, N=N)
